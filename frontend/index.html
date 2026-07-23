@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic-Tac-Toe Online</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- 接続設定画面 -->
+    <section id="screen-setup" class="screen active">
+      <div class="card">
+        <h1>🎮 Tic-Tac-Toe Online</h1>
+        <p class="subtitle">1v1 リアルタイム対戦</p>
+        <div class="form-group">
+          <label for="input-name">プレイヤー名</label>
+          <input id="input-name" type="text" maxlength="16" placeholder="名前を入力" />
+        </div>
+        <div class="form-group">
+          <label for="input-url">WebSocket URL</label>
+          <input id="input-url" type="text" placeholder="wss://xxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/prod" value="enter WebSocket url" />
+        </div>
+        <button id="btn-connect" class="btn-primary">接続して対戦を探す</button>
+        <p id="setup-error" class="error-msg hidden"></p>
+      </div>
+    </section>
+
+    <!-- 待機画面 -->
+    <section id="screen-waiting" class="screen">
+      <div class="card">
+        <div class="spinner"></div>
+        <h2>対戦相手を探しています...</h2>
+        <p id="waiting-msg" class="subtitle">しばらくお待ちください</p>
+        <button id="btn-cancel" class="btn-secondary">キャンセル</button>
+      </div>
+    </section>
+
+    <!-- ゲーム画面 -->
+    <section id="screen-game" class="screen">
+      <header class="game-header">
+        <div class="player-info" id="info-x">
+          <span class="player-mark x">✕</span>
+          <span class="player-label">プレイヤー X</span>
+        </div>
+        <div id="status-bar" class="status-bar">準備中</div>
+        <div class="player-info" id="info-o">
+          <span class="player-mark o">○</span>
+          <span class="player-label">プレイヤー O</span>
+        </div>
+      </header>
+
+      <div id="board" class="board" role="grid" aria-label="Tic-Tac-Toe ボード">
+        <!-- 9マスはJSで生成 -->
+      </div>
+
+      <div id="result-panel" class="result-panel hidden">
+        <p id="result-msg" class="result-msg"></p>
+        <div class="result-actions">
+          <button id="btn-rematch" class="btn-primary">再戦する</button>
+          <button id="btn-quit" class="btn-secondary">終了する</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 接続エラー画面 -->
+    <section id="screen-error" class="screen">
+      <div class="card">
+        <div class="error-icon">⚠️</div>
+        <h2>接続が切れました</h2>
+        <p id="error-detail" class="subtitle"></p>
+        <button id="btn-retry" class="btn-primary">最初に戻る</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
